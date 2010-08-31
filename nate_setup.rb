@@ -2,7 +2,7 @@
 # mapping out new machine setup
 
 dep 'nate_setup' do
-  requires 'Telephone.app', 'textmate', 'CoRD.app', 'Cyberduck.app', 'Dropbox.app', 'SimpleText.app', 'IPSecuritas.app', 'Quicksilver.app', 'SelfControl.app', 'WriteRoom.app', 'Google Chrome.app', 'Remote Desktop.app', 'Sequel Pro.app', 'Firefox.app'
+  requires 'Telephone.app', 'textmate', 'CoRD.app', 'Cyberduck.app', 'Dropbox.app', 'SimpleText.app', 'IPSecuritas.app', 'Quicksilver.app', 'SelfControl.app', 'WriteRoom.app', 'Google Chrome.app', 'Sequel Pro.app', 'Firefox.app'
 end
 
 # app deps
@@ -70,9 +70,9 @@ dep 'Google Chrome.app' do
   source 'http://dl.google.com/chrome/mac/beta/GoogleChrome.dmg'
 end
 
-dep "Remote Desktop.app" do
-  source 'http://nate.adullmoment.com/pkg/ARD3.dmg.zip'
-end
+#dep "Remote Desktop.app" do
+#  source 'http://nate.adullmoment.com/pkg/ARD3.dmg.zip'
+#end
 
 dep 'Sequel Pro.app' do
   source 'http://sequel-pro.googlecode.com/files/sequel-pro-0.9.8.1.dmg'
