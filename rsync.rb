@@ -10,7 +10,6 @@ dep 'rsync.src' do
   extra_source "http://www.samba.org/ftp/rsync/rsync-patches-3.0.7.tar.gz"
   preconfigure {
       log_shell "patching rsync", "patch -p1 <patches/fileflags.diff; patch -p1 <patches/crtimes.diff; ./prepare-source"
-    end
   }
   after {
     log_shell "checking version:", "/usr/local/bin/rsync --version"
