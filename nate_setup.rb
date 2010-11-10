@@ -1,8 +1,9 @@
 # 100828
+# 100915, moved rsync into this dep file
 # mapping out new machine setup
 
 dep 'nate_setup' do
-  requires 'Telephone.app', 'textmate', 'CoRD.app', 'Cyberduck.app', 'Dropbox.app', 'SimpleText.app', 'IPSecuritas.app', 'Quicksilver.app', 'SelfControl.app', 'WriteRoom.app', 'Google Chrome.app', 'Sequel Pro.app', 'Firefox.app'
+  requires 'Telephone.app', 'textmate', 'CoRD.app', 'Cyberduck.app', 'Dropbox.app', 'SimpleText.app', 'IPSecuritas.app', 'Quicksilver.app', 'SelfControl.app', 'WriteRoom.app', 'Google Chrome.app', 'Sequel Pro.app', 'Firefox.app', 'rsync'
 end
 
 # app deps
@@ -31,7 +32,7 @@ dep 'CoRD.app' do
 end
 
 dep 'Cyberduck.app' do
-  source "http://cyberduck.ch/Cyberduck-3.5.1.zip"
+  source "http://cyberduck.ch/Cyberduck-3.7.zip"
 end
 
 dep 'Dropbox.app' do
@@ -99,8 +100,33 @@ dep 'capistrano.gem' do
   met? { which 'cap'}
 end
 
-dep 'zonefile.gem' do
-end
+#dep 'zonefile.gem' do
+#end
 
 dep 'slideshow.gem' do
+end
+
+
+# source
+dep 'rsync' do
+  requires 'rsync.src'
+end
+
+dep 'rsync.src' do
+  requires 'build tools'
+  provides '/usr/local/bin/rsync'
+  prefix '/usr/local'
+  source "http://www.samba.org/ftp/rsync/rsync-3.0.7.tar.gz"
+  extra_source "http://www.samba.org/ftp/rsync/rsync-patches-3.0.7.tar.gz"
+  preconfigure {
+      log_shell "patching rsync", "patch -p1 <patches/fileflags.diff; patch -p1 <patches/crtimes.diff; ./prepare-source"
+  }
+  after {
+    log_shell "checking version:", "/usr/local/bin/rsync --version"
+    in_dir '/usr/bin' do
+      sudo "mv -v /usr/bin/rsync /usr/bin/rsync.apple"
+      sudo "ln -sf /usr/local/bin/rsync /usr/bin/rsync"
+      sudo "chmod 755 /usr/local/bin"
+    end
+    }
 end
