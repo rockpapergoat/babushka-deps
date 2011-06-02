@@ -6,8 +6,8 @@ dep 'rsync.src' do
   requires 'build tools'
   provides '/usr/local/bin/rsync'
   prefix '/usr/local'
-  source "http://www.samba.org/ftp/rsync/rsync-3.0.7.tar.gz"
-  extra_source "http://www.samba.org/ftp/rsync/rsync-patches-3.0.7.tar.gz"
+  source "http://www.samba.org/ftp/rsync/rsync-3.0.8.tar.gz"
+  extra_source "http://www.samba.org/ftp/rsync/rsync-patches-3.0.8.tar.gz"
   preconfigure {
       log_shell "patching rsync", "patch -p1 <patches/fileflags.diff; patch -p1 <patches/crtimes.diff; ./prepare-source"
   }
